@@ -8,7 +8,7 @@ Suggestion: you can automate the management of the subissions with tools like [H
 
 Links:
 
-* [repository on github](https://github.com/lexoyo/serverless-forms/)
+* [repository on github](https://github.com/MikeOwino/serverless-forms)
 * [package on npm](https://www.npmjs.com/package/serverless-form)
 
 ## 1 click deploy
