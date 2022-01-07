@@ -1,45 +1,58 @@
 {
-  "name": "Email form data",
-  "description": "NodeJS app to send form submissions by email",
-  "logo": "",
-  "repository":"https://github.com/lexoyo/email-form-data.git",
-	"buildpacks": [
-		{
-			"url": "heroku/nodejs"
-		}
-	],
-	"env": {
-    "MESSAGE": {
-      "description": "Message to displayed after the form submission. May contain HTML. Default: 'Thank you for your submission.'"
-    },
-    "EMAIL_HOST": {
-      "description": "SMTP config: hostname or IP address to connect to (defaults to ‘localhost’)",
-      "required": true
-    },
-    "EMAIL_PORT": {
-      "description": "SMTP config: port to connect to (defaults to 587 if is secure is false or 465 if true)",
-    },
-    "EMAIL_USER": {
-      "description": "SMTP config: your email login",
-      "required": true
-    },
-    "EMAIL_PASS": {
-      "description": "SMTP config: your email password",
-      "required": true
-    },
-    "TO": {
-      "description": "Email address to send the form to (your email)",
-      "required": true
-    },
-    "FROM": {
-      "description": "Email address to use as sender address",
-      "required": true
-    },
-    "SITE_NAME": {
-      "description": "Name of your site, will be displayed in the email title",
-    }
-	},
+  "name": "Small Sharp Tool",
+  "description": "This app does one little thing, and does it well.",
   "keywords": [
-    "email", "form"
-  ]
+    "productivity",
+    "HTML5",
+    "scalpel"
+  ],
+  "website": "https://small-sharp-tool.com/",
+  "repository": "https://github.com/jane-doe/small-sharp-tool",
+  "logo": "https://small-sharp-tool.com/logo.svg",
+  "success_url": "/welcome",
+  "scripts": {
+    "postdeploy": "bundle exec rake bootstrap"
+  },
+  "env": {
+    "SECRET_TOKEN": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+    "WEB_CONCURRENCY": {
+      "description": "The number of processes to run.",
+      "value": "5"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "standard-1x"
+    }
+  },
+  "image": "heroku/ruby",
+  "addons": [
+    "openredis",
+    {
+      "plan": "mongolab:shared-single-small",
+      "as": "MONGO"
+    },
+    {
+      "plan": "heroku-postgresql",
+      "options": {
+        "version": "9.5"
+      }
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/stomita/heroku-buildpack-phantomjs"
+    }
+  ],
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "bundle exec rake test"
+      }
+    }
+  }
 }
